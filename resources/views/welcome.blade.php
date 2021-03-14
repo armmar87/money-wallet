@@ -31,7 +31,7 @@
                 @if (Route::has('login'))
                     <div class="hidden sm:block">
                         @auth
-                            <h2><a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a></h2>
+                            <h2><a href="{{ url('/wallets') }}" class="text-sm text-gray-700 underline">Dashboard</a></h2>
                         @else
                             <h2>
                                 <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
