@@ -20,7 +20,7 @@ class ReportController extends Controller
             return redirect()->route('wallets.create');
         }
 
-        $wallets = Wallet::all();
+        $wallets = Wallet::with('records')->get();
 
         return view('report', compact('wallets'));
     }

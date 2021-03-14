@@ -40,8 +40,8 @@
             </div>
 
             <div class="flex items-center justify-end mt-2 mb-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('reports') }}">
-                    {{ __('Reports') }}
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('records.index') }}">
+                    {{ __('Records') }}
                 </a>
 
                 <x-jet-button class="ml-4">

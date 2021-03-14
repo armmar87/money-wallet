@@ -12,8 +12,13 @@
                     <div class="flex">
                         <h2>{{ __('Wallets') }}</h2>
                         <x-jet-button class="ml-4 btn-green">
+                            <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('wallets.create') }}">
+                                {{ __('Add Wallet') }}
+                            </a>
+                        </x-jet-button>
+                        <x-jet-button class="ml-4 btn-green">
                             <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('records.create') }}">
-                                {{ __('Add') }}
+                                {{ __('Add Record') }}
                             </a>
                         </x-jet-button>
                     </div>
