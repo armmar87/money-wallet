@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container mt-5">
-                    <div class="flex">
+                    <div class="flex mb-3" style="text-align: end">
                         <h2>{{ __('Wallets') }}</h2>
                         <x-jet-button class="ml-4 btn-green">
                             <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('wallets.create') }}">

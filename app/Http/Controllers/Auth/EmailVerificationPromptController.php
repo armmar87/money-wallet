@@ -17,12 +17,6 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = $request->user();
-        if($user->google_id) {
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-            return view('auth.verify-email');
-        }
         return $request->user()->hasVerifiedEmail()
                     ? redirect()->intended(RouteServiceProvider::HOME)
                     : view('auth.verify-email');

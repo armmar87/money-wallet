@@ -26,8 +26,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('main') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 mr-2" href="{{ route('main') }}">
                     {{ __('Main Page') }}
+                </a>
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('Register') }}
                 </a>
 
                 <x-jet-button class="ml-4">

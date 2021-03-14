@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg pb-3 pt-3">
                 <x-jet-button class="ml-4 bg-blue-600">
                     <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('wallets.index') }}">
                         {{ __('Wallets') }}

@@ -17,12 +17,12 @@
 
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full mb-4" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
-            <div class="form-group mt-4">
-                <select class="mt-1 w-full" name="type">
-                    <option>Select Wallet type</option>
+            <label for="type">Select Wallet Type</label>
+            <div class="form-group">
+                <select class="mt-1 w-full mb-4" name="type">
                     @foreach (config('types.wallets') as $type)
                         <option value="{{ $type }}">
                             {{ $type }}
@@ -32,9 +32,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('wallets.index') }}">
-                    {{ __('Wallets') }}
-                </a>
+                @if (! session('status'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('wallets.index') }}">
+                        {{ __('Wallets') }}
+                    </a>
+                @endif
 
                 <x-jet-button class="ml-4">
                     {{ __('Create') }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\User;
@@ -37,19 +38,21 @@ class GoogleController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect()->intended('reports');
+                return redirect()->route('reports');
 
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
+                    'email_verified_at'=> Carbon::now(),
                     'password' => encrypt('123456dummy')
                 ]);
 
+
                 Auth::login($newUser);
 
-                return redirect()->intended('reports');
+                return redirect()->route('reports');
             }
 
         } catch (Exception $e) {

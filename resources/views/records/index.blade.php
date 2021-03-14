@@ -36,7 +36,7 @@
                                 <td>{{ $record->type }}</td>
                                 <td>
                                     <div class="flex">
-                                        <x-jet-button class="ml-4 2xl:bg-green-600">
+                                        <x-jet-button class="ml-4 btn-danger">
                                             <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('records.edit', ['record' => $record->id]) }}">
                                                 {{ __('Edit') }}
                                             </a>
