@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WalletStoreRequest;
 use App\Models\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WalletController extends Controller
@@ -20,9 +22,14 @@ class WalletController extends Controller
      */
     public function index()
     {
+        if (! auth()->user()->first_time) {
+            session()->flash('status', 'You need to create a wallet to be continued!');
+            return redirect()->route('wallets.create');
+        }
+
         $wallets = $this->model->all();
 
-        return view('wallet');
+        return view('wallet', compact('wallets'));
     }
 
     /**
@@ -32,7 +39,7 @@ class WalletController extends Controller
      */
     public function create()
     {
-        //
+        return view('wallets.create');
     }
 
     /**
@@ -41,9 +48,17 @@ class WalletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WalletStoreRequest $request)
     {
-        //
+        $user = auth()->user();
+        if (! $user->first_time) {
+            $user->first_time = Carbon::now();
+            $user->save();
+        }
+        $request->merge(['user_id' => $user->id]);
+        $this->model->store($request->all());
+
+        return redirect()->route('wallets.index');
     }
 
     /**
