@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['verified'])->group(function () {
 
+        Route::get('/reports', [ReportController::class, 'index'])->name('reports');
         Route::resource('wallets', WalletController::class);
+        Route::resource('records', RecordController::class);
     });
 });
 

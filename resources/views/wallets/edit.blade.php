@@ -10,19 +10,20 @@
             <div>{{ session('status') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('wallets.store') }}">
+        <form method="POST" action="{{ route('wallets.update',['wallet' => $wallet->id]) }}">
             @csrf
+            @method('PUT')
 
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$wallet->name" required autofocus autocomplete="name" />
             </div>
 
             <div class="form-group mt-4">
                 <select class="mt-1 w-full" name="type">
                     <option>Select Wallet type</option>
                     @foreach (config('types.wallets') as $type)
-                        <option value="{{ $type }}">
+                        <option value="{{ $type }}" {{ $type === $wallet->type ? 'selected="selected"' : '' }}>
                             {{ $type }}
                         </option>
                     @endforeach
@@ -35,7 +36,7 @@
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Create') }}
+                    {{ __('Update') }}
                 </x-jet-button>
             </div>
         </form>

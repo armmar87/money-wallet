@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WalletStoreRequest;
+use App\Http\Requests\WalletRequest;
 use App\Models\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,14 +22,9 @@ class WalletController extends Controller
      */
     public function index()
     {
-        if (! auth()->user()->first_time) {
-            session()->flash('status', 'You need to create a wallet to be continued!');
-            return redirect()->route('wallets.create');
-        }
-
         $wallets = $this->model->all();
 
-        return view('wallet', compact('wallets'));
+        return view('wallets.index', compact('wallets'));
     }
 
     /**
@@ -48,7 +43,7 @@ class WalletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(WalletStoreRequest $request)
+    public function store(WalletRequest $request)
     {
         $user = auth()->user();
         if (! $user->first_time) {
@@ -62,17 +57,6 @@ class WalletController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Wallet  $wallet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Wallet $wallet)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Wallet  $wallet
@@ -80,7 +64,7 @@ class WalletController extends Controller
      */
     public function edit(Wallet $wallet)
     {
-        //
+        return view('wallets.edit', compact('wallet'));
     }
 
     /**
@@ -90,9 +74,11 @@ class WalletController extends Controller
      * @param  \App\Models\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Wallet $wallet)
+    public function update(WalletRequest $request, Wallet $wallet)
     {
-        //
+        $wallet->store($request->all());
+
+        return redirect()->route('wallets.index');
     }
 
     /**
@@ -103,6 +89,8 @@ class WalletController extends Controller
      */
     public function destroy(Wallet $wallet)
     {
-        //
+        $wallet->delete();
+
+        return redirect()->route('wallets.index');
     }
 }
