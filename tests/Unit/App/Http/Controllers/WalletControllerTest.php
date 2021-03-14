@@ -67,7 +67,7 @@ class WalletControllerTest extends BaseTestCase
         $this->constructMocks();
         $request = Mockery::mock('App\Http\Requests\WalletRequest');
         $request->shouldReceive('merge')
-            ->once('all')
+            ->once()
             ->andReturn($request)
             ->shouldReceive('all');
 
