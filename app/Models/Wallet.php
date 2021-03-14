@@ -18,6 +18,11 @@ class Wallet extends Model
         static::addGlobalScope(new UserWalletScope());
     }
 
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
+
     public function store(array $data)
     {
         $this->fill($data);

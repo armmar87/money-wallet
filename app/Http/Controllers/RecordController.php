@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecordRequest;
 use App\Models\Record;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
 {
+
+    private $model;
+
+    function __construct(Record $wallet) {
+        $this->model = $wallet;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class RecordController extends Controller
      */
     public function index()
     {
-        //
+        $records = $this->model->with('wallet')->get();
+
+        return view('records.index', compact('records'));
     }
 
     /**
@@ -24,7 +35,9 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
+        $wallets = Wallet::all();
+
+        return view('records.create', compact('wallets'));
     }
 
     /**
@@ -33,20 +46,11 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecordRequest $request)
     {
-        //
-    }
+        $this->model->store($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Record $record)
-    {
-        //
+        return redirect()->route('records.index');
     }
 
     /**
@@ -57,7 +61,9 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        //
+        $wallets = Wallet::all();
+
+        return view('records.edit', compact('record', 'wallets'));
     }
 
     /**
@@ -67,9 +73,11 @@ class RecordController extends Controller
      * @param  \App\Models\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Record $record)
+    public function update(RecordRequest $request, Record $record)
     {
-        //
+        $record->store($request->all());
+
+        return redirect()->route('records.index');
     }
 
     /**
@@ -80,6 +88,8 @@ class RecordController extends Controller
      */
     public function destroy(Record $record)
     {
-        //
+        $record->delete();
+
+        return redirect()->route('records.index');
     }
 }

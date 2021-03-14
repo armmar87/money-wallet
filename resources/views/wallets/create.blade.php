@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+        <h1>{{ __('Create Wallet') }}</h1>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
@@ -9,6 +10,7 @@
         @if (session('status'))
             <div>{{ session('status') }}</div>
         @endif
+
 
         <form method="POST" action="{{ route('wallets.store') }}">
             @csrf
@@ -30,7 +32,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('wallets.index') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('reports') }}">
                     {{ __('Reports') }}
                 </a>
 

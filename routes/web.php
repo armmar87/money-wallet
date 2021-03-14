@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
 
         Route::get('/reports', [ReportController::class, 'index'])->name('reports');
-        Route::resource('wallets', WalletController::class);
-        Route::resource('records', RecordController::class);
+        Route::resource('wallets', WalletController::class)->except(['show']);
+        Route::resource('records', RecordController::class)->except(['show']);
     });
 });
 

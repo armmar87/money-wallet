@@ -1,14 +1,11 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+        <h1>{{ __('Update Wallet') }}</h1>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div>{{ session('status') }}</div>
-        @endif
 
         <form method="POST" action="{{ route('wallets.update',['wallet' => $wallet->id]) }}">
             @csrf
