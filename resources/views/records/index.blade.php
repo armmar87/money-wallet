@@ -11,7 +11,7 @@
                 <div class="container mt-5">
                     <div class="flex">
                         <h2>{{ __('Records') }}</h2>
-                        <x-jet-button class="ml-4 btn-green">
+                        <x-jet-button class="ml-20 btn-green mb-3">
                             <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('records.create') }}">
                                 {{ __('Add') }}
                             </a>

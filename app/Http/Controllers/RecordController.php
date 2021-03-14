@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RecordRequest;
 use App\Models\Record;
 use App\Models\Wallet;
-use Illuminate\Http\Request;
 
 class RecordController extends Controller
 {
 
     private $model;
 
-    function __construct(Record $wallet) {
-        $this->model = $wallet;
+    function __construct(Record $record) {
+        $this->model = $record;
     }
 
     /**
