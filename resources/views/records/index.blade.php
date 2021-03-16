@@ -13,7 +13,7 @@
                         <h2>{{ __('Records') }}</h2>
                         <x-jet-button class="ml-20 btn-green mb-3">
                             <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('records.create') }}">
-                                {{ __('Add') }}
+                                {{ __('Add, Withdraw Money') }}
                             </a>
                         </x-jet-button>
                     </div>
@@ -34,21 +34,7 @@
                                 <td>{{ $record->amount }}</td>
                                 <td>{{ $record->wallet->name }}</td>
                                 <td>{{ $record->type }}</td>
-                                <td>
-                                    <div class="flex">
-                                        <x-jet-button class="ml-4 btn-danger">
-                                            <a class="text-sm text-white-600 hover:text-gray-900" href="{{ route('records.edit', ['record' => $record->id]) }}">
-                                                {{ __('Edit') }}
-                                            </a>
-                                        </x-jet-button>
-                                        <form action="{{ route('records.destroy', ['record' => $record->id]) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="ml-4 btn btn-danger btn-block w-20">Delete</button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <td>{{ $record->action }}</td>
                             </tr>
                         @endforeach
                         </tbody>

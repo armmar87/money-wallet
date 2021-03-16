@@ -52,43 +52,4 @@ class RecordController extends Controller
         return redirect()->route('records.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Record $record)
-    {
-        $wallets = Wallet::all();
-
-        return view('records.edit', compact('record', 'wallets'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function update(RecordRequest $request, Record $record)
-    {
-        $record->store($request->all());
-
-        return redirect()->route('records.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Record $record)
-    {
-        $record->delete();
-
-        return redirect()->route('records.index');
-    }
 }

@@ -12,6 +12,7 @@ class Record extends Model
 
     protected $table = 'records';
     protected $fillable = ['wallet_id', 'amount', 'type'];
+    protected $appends = ['action'];
 
     public function wallet()
     {
@@ -21,6 +22,11 @@ class Record extends Model
     protected static function booted()
     {
         static::addGlobalScope(new UserRecordScope());
+    }
+
+    public function getActionAttribute()
+    {
+        return $this->action = $this->amount >= 0 ? 'Add' : 'Withdraw';
     }
 
     public function store(array $data)
